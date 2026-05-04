@@ -16,7 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const li= document.createElement("li");
-        li.textContent = taskText;
+         li.innerHTML = `
+        <input type="checkbox" class="checkbox">
+        <span>${taskText}</span>
+        `;
+
         taskList.appendChild(li);
         taskInput.value = "";
         toggleEmptyState();
