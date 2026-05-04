@@ -18,3 +18,30 @@ body{
     background: url("images/back-image.jpg") no-repeat center center/cover;
 }
 
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.todo-task{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    gap:30px;
+    border-radius: 20px;
+    box-shadow: 0 0 100px rgba(0,0,0,0.5);
+    border: 3px solid rgba(255,255,255,0.18);
+    backdrop-filter: blur(10px);
+}
+
+.todo-task h1{
+    font-size: 2rem;
+}
