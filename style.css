@@ -63,6 +63,7 @@ body{
     border-radius: 22px;
     background: rgba(255,194,209,0.3);
     color: #000050;
+    box-shadow: 0 0 100px rgba(0,0,0,0.5);
 }
 
 .input-area button{
@@ -78,6 +79,7 @@ body{
     border: 2px solid rgba(255,255,255,0.18);
     cursor: pointer;
     transition: all 0.2s ease;
+    box-shadow: 0 0 100px rgba(0,0,0,0.5);
 }
 
 .input-area button:hover {
@@ -114,6 +116,7 @@ body{
     font-size: 1.2rem;
     position: relative;
     transition: box-shadow 0.2s ease;
+    box-shadow: 0 0 100px rgba(0,0,0,0.2);
 }
 
 #task-list li:hover {
@@ -131,7 +134,7 @@ body{
 }
 
 #task-list li .checkbox:checked{
-    background: rgba(0,0,0,0.4);
+    background: darkred;
     transform: 1.1rem;
 }
 
@@ -183,6 +186,7 @@ body{
 
 .task-buttons .dlt-btn{
     background: #c9b7fe;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
 }
 
 .stat-container{
