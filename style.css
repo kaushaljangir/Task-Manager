@@ -232,3 +232,24 @@ body{
     font-weight: bold;
     font-size: 1.5rem;
 }
+
+@media (max-width: 600px) {
+    .container {
+        margin: 0 20px;
+        padding: 0 10px;
+    }
+
+    .todo-task{
+        padding: 1.5rem;
+        gap: 20px;
+        font-size: 1rem;
+    }
+
+    .input-area input{
+        font-size: 1rem;
+    }
+
+    #task-list li {
+        font-size: 1 rem;
+    }
+}
