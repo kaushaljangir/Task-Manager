@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         emptyImg.style.display = taskList.children.length === 0 ? "block" : "none";
         };
 
-    const addTask = (event) => {
-        event.preventDefault();
+    const addTask = (completed= false) => {
         const taskText = taskInput.value.trim();
         if(!taskText){
             return;
@@ -19,7 +18,22 @@ document.addEventListener('DOMContentLoaded', () => {
          li.innerHTML = `
         <input type="checkbox" class="checkbox">
         <span>${taskText}</span>
+        <div class="task-buttons">
+        <button class="dlt-btn"><i class="fa-solid fa-trash"></i></button>
+        </div>
         `;
+        
+        const checkbox = li.querySelector(".checkbox");
+        
+        checkbox.addEventListener("change", ()=>{
+            const isChecked = checkbox.checked;
+            li.classList.toggle("completed", isChecked);
+        });
+
+        li.querySelector(".dlt-btn").addEventListener("click", () =>{
+            li.remove();
+            toggleEmptyState();
+        });
 
         taskList.appendChild(li);
         taskInput.value = "";
@@ -29,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     addTaskBtn.addEventListener("click", addTask);
     taskInput.addEventListener("keypress", (e) =>{
         if(e.key === "Enter") {
-            addTask(e);
+            e.preventDefault();
+            addTask();
         }
     });
 });

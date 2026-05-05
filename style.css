@@ -150,3 +150,36 @@ body{
     word-wrap: break-word;
 }
 
+#task-list li.completed span{
+    text-decoration: 2px line-through #00000086;
+    color: #0000008b;
+}
+
+.task-buttons{
+    display: flex;
+    gap: 10px;
+    margin-right: auto;
+}
+
+.task-buttons button{
+    background: rgba(255,194,209,0.3);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color: #000;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-buttons button:hover{
+    transform: scale(1.2);
+}
+
+.task-buttons .dlt-btn{
+    background: #c9b7fe;
+}
