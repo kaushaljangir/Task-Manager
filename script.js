@@ -3,12 +3,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const addTaskBtn= document.querySelector("#add-task-btn");
     const taskList= document.querySelector("#task-list");
     const emptyImg = document.querySelector(".empty-img");
+    const progressBar = document.querySelector(".progress");
+    const progressNumbers = document.querySelector("#numbers");
 
     const toggleEmptyState = () => {
         emptyImg.style.display = taskList.children.length === 0 ? "block" : "none";
         };
 
-    const addTask = (event,completed= false) => {
+    const updateProgress = (checkCompletion = true) =>{
+        const totalTasks = taskList.children.length;
+        const completedTasks = taskList.querySelectorAll(".checkbox:checked").length;
+
+        progressBar.style.width = totalTasks ? `${(completedTasks/totalTasks) * 100}%` : "0%";
+        progressNumbers.textContent = `${completedTasks} / ${totalTasks}`;
+    };
+
+
+    const addTask = (event,completed = false,checkCompletion = true) => {
         event.preventDefault();
         const taskText = taskInput.value.trim();
         if(!taskText){
@@ -29,16 +40,19 @@ document.addEventListener('DOMContentLoaded', () => {
         checkbox.addEventListener("change", ()=>{
             const isChecked = checkbox.checked;
             li.classList.toggle("completed", isChecked);
+            updateProgress();
         });
 
         li.querySelector(".dlt-btn").addEventListener("click", () =>{
             li.remove();
             toggleEmptyState();
+            updateProgress();
         });
 
         taskList.appendChild(li);
         taskInput.value = "";
         toggleEmptyState();
+        updateProgress(checkCompletion);
     };
 
     addTaskBtn.addEventListener("click", addTask);
