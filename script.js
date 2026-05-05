@@ -22,6 +22,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const saveTaskToLocalStorage = () => {
+        const tasks = Array.from(taskList.querySelectorAll("li")).map(li => ({
+            text : li.querySelector("span").textContent,
+            completed : li.querySelector(".checkbox").checked
+        }));
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    };
+
+    const loadTasksFromLocalStorage = () => {
+        const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        savedTasks.forEach(({ text, completed}) => addTask(text,completed,false));
+        toggleEmptyState();
+        updateProgress();
+    };
 
     const addTask = (text, completed= false, checkCompletion = true) => {
         const taskText = text || taskInput.value.trim();
@@ -39,23 +53,30 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         
         const checkbox = li.querySelector(".checkbox");
+
+        if(completed){
+        li.classList.add("completed");
+        }
         
         checkbox.addEventListener("change", ()=>{
             const isChecked = checkbox.checked;
             li.classList.toggle("completed", isChecked);
             updateProgress();
+            saveTaskToLocalStorage();
         });
 
         li.querySelector(".dlt-btn").addEventListener("click", () =>{
             li.remove();
             toggleEmptyState();
             updateProgress();
+            saveTaskToLocalStorage();
         });
 
         taskList.appendChild(li);
         taskInput.value = "";
         toggleEmptyState();
         updateProgress(checkCompletion);
+        saveTaskToLocalStorage();
     };
 
     addTaskBtn.addEventListener("click",() => addTask());
@@ -65,6 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
             addTask();
         }
     });
+
+    loadTasksFromLocalStorage();
+
 });
 
 const Confetti = () =>{
