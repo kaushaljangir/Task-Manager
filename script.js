@@ -23,16 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 
-    const addTask = (event,completed = false,checkCompletion = true) => {
-        event.preventDefault();
-        const taskText = taskInput.value.trim();
+    const addTask = (text, completed= false, checkCompletion = true) => {
+        const taskText = text || taskInput.value.trim();
         if(!taskText){
             return;
         }
 
         const li= document.createElement("li");
          li.innerHTML = `
-        <input type="checkbox" class="checkbox">
+        <input type="checkbox" class="checkbox" ${completed ? "checked" : ""}>
         <span>${taskText}</span>
         <div class="task-buttons">
         <button class="dlt-btn"><i class="fa-solid fa-trash"></i></button>
@@ -59,10 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
         updateProgress(checkCompletion);
     };
 
-    addTaskBtn.addEventListener("click", addTask);
+    addTaskBtn.addEventListener("click",() => addTask());
     taskInput.addEventListener("keypress", (e) =>{
         if(e.key === "Enter") {
-            addTask(e);
+            e.preventDefault();
+            addTask();
         }
     });
 });
