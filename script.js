@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
         emptyImg.style.display = taskList.children.length === 0 ? "block" : "none";
         };
 
-    const addTask = (completed= false) => {
+    const addTask = (event,completed= false) => {
+        event.preventDefault();
         const taskText = taskInput.value.trim();
         if(!taskText){
             return;
@@ -43,8 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addTaskBtn.addEventListener("click", addTask);
     taskInput.addEventListener("keypress", (e) =>{
         if(e.key === "Enter") {
-            e.preventDefault();
-            addTask();
+            addTask(e);
         }
     });
 });
