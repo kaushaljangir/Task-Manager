@@ -8,16 +8,24 @@
 html,body {
     height: auto;
     width: 100%;
+    overflow-x: hidden;
 }
 
 body{
-    padding: 30px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url("images/back-image2.jpg") no-repeat center center/cover;
-    background-attachment: fixed;
+    padding: 40px 0;
+    background: none;
+}
+
+body::before{
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("images/back-image2.jpg") center/cover no-repeat;
+    z-index: -1;
 }
 
 .container{
